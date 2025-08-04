@@ -1,0 +1,7 @@
+.docker/*
+
+!.docker/db/init/
+!.docker/php/conf.d/
+!.docker/supervisor/conf.d/
+!.docker/nginx/
+!.docker/cron/cronjob
