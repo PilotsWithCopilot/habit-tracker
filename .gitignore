@@ -22,3 +22,7 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+
+.docker/mailpit/data
+.docker/db/data
+.docker/redis/data
