@@ -26,3 +26,6 @@ yarn-error.log
 .docker/mailpit/data
 .docker/db/data
 .docker/redis/data
+
+_ide_helper.php
+
