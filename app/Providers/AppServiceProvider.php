@@ -8,10 +8,13 @@ use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
+use SocialiteProviders\Manager\SocialiteWasCalled;
+use SocialiteProviders\Telegram\Provider;
 
 final class AppServiceProvider extends ServiceProvider
 {
@@ -31,6 +34,7 @@ final class AppServiceProvider extends ServiceProvider
         $this->configureUrls();
         $this->configureVite();
         $this->configurePasswordValidation();
+        $this->configureOauth();
     }
 
     /**
@@ -84,6 +88,13 @@ final class AppServiceProvider extends ServiceProvider
             return $this->app->environment('staging', 'production')
                 ? Password::min(12)->uncompromised()
                 : null;
+        });
+    }
+
+    private function configureOauth(): void
+    {
+        Event::listen(static function (SocialiteWasCalled $event) {
+            $event->extendSocialite('telegram', Provider::class);
         });
     }
 }
