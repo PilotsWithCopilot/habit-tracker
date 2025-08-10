@@ -35,6 +35,6 @@ Route::middleware('auth')->group(function (): void {
     Route::post('confirm-password', [Auth\ConfirmablePasswordController::class, 'store'])
         ->middleware('throttle:6,1');
 
-    Route::post('logout', [Auth\TelegramController::class, 'destroy'])
+    Route::post('logout', [Auth\AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 });
