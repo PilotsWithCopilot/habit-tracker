@@ -23,7 +23,7 @@ final class TelegramController extends Controller
     {
         /** @var TelegramUser $telegramUser */
         $telegramUser = $this->socialite->driver('telegram')->user();
-        /** @var array{id: string, first_name: string, last_name: string|null, photo_url: string|null } $rawData */
+        /** @var array{id: string, first_name: string, last_name: string|null, username: string|null, photo_url: string|null } $rawData */
         $rawData = $telegramUser->getRaw();
 
         $telegramData = new TelegramUserData(
